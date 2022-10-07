@@ -84,8 +84,8 @@ class Login extends Component {
             Play
           </button>
           <button
-            type="button"
             data-testid="btn-settings"
+            type="button"
             onClick={ this.handleClickSettings }
           >
             Settings
