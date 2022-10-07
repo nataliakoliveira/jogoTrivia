@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+/* import { typeApi } from '../Redux/action/index'; */
 
 class Login extends Component {
   state = {
@@ -31,6 +34,18 @@ class Login extends Component {
     }
   };
 
+  handleClick = async (e) => {
+    e.preventDefault();
+    const { history } = this.props;
+    const url = 'https://opentdb.com/api_token.php?command=request';
+    const data = await fetch(url);
+    const response = await data.json();
+    const { token } = response;
+    localStorage.setItem('token', token);
+    history.push('/game');
+    console.log(token);
+  };
+
   render() {
     const { name, email, isBtnDisabled } = this.state;
     return (
@@ -58,6 +73,7 @@ class Login extends Component {
             data-testid="btn-play"
             type="submit"
             disabled={ isBtnDisabled }
+            onClick={ this.handleClick }
           >
             Play
           </button>
@@ -67,4 +83,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+/* mapStateToProps = (state) => ({ ...state }); */
+
+export default connect()(Login);
