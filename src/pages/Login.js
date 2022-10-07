@@ -46,6 +46,12 @@ class Login extends Component {
     console.log(token);
   };
 
+  handleClickSettings = async (e) => {
+    e.preventDefault();
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { name, email, isBtnDisabled } = this.state;
     return (
@@ -76,6 +82,13 @@ class Login extends Component {
             onClick={ this.handleClick }
           >
             Play
+          </button>
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ this.handleClickSettings }
+          >
+            Settings
           </button>
         </form>
       </>
