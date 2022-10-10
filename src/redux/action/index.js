@@ -23,6 +23,6 @@ export const api = async () => {
     const data = await fetch(url);
     const response = await data.json();
     dispatch(typeApi(response));
-    console.log(response);
+    // console.log(response);
   };
 };

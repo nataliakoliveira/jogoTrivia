@@ -3,7 +3,7 @@ import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux'
 import App from '../App';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Game from '../pages/Game';
+
 
 describe('Teste o componente <App.js />', () => {
   test('Verificação dos da pagina Login e pagina Gamer', async () => {
@@ -16,9 +16,9 @@ describe('Teste o componente <App.js />', () => {
     expect(inputEmail.value).toBe('rejane@rejane.com');
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
-    const gameTexto = await screen.findByText('Teste Game')
-    const { pathname } = history.location;
+    const gameTexto =  await screen.findByText('Pagina do Game')
     expect(pathname).toBe('/game');
+    const { pathname } = history.location;
     expect(gameTexto).toBeInTheDocument();
   });
 })

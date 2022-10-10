@@ -8,11 +8,11 @@ const INITIAL_STATE = {
 
 const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  /*   case TYPE_API:
-    return {
-      ...state,
-      email: action.payload,
-    }; */
+  // case TYPE_API:
+  //   return {
+  //     ...state,
+  //     email: action.payload,
+  //   };
   case TYPE_LOGIN:
     return {
       ...state,

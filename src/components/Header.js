@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 class Header extends React.Component {
   render() {
     const { name, score, email } = this.props;
-    console.log(email);
+    // console.log(email);
     const token = md5(email).toString();
     return (
       <header>
