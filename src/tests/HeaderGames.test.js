@@ -7,7 +7,8 @@ import userEvent from '@testing-library/user-event';
 
 describe('Teste o componente <App.js />', () => {
   test('Testando caminho login a headers e  o HeadersGames.', async () => {
-    const { history } = renderWithRouterAndRedux(<App />);
+    
+    const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/game'] });
     const inputName = screen.getByTestId('input-player-name');
     userEvent.type(inputName, 'Rejane');
     expect(inputName.value).toBe('Rejane');
@@ -19,10 +20,11 @@ describe('Teste o componente <App.js />', () => {
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
 
-    const nameTela = screen.getByText(/rejan/i)
-    expect(nameTela).toBeInTheDocument();
-    const pontosTela = screen.getByText(/pontos:0/i)
-    expect(pontosTela).toBeInTheDocument();
+    const gameTexto = await screen.findByText('Página do Game')
+    const { pathname } = history.location;
+    expect(pathname).toBe('/game');
+    expect(gameTexto).toBeInTheDocument();
+
     const nomeDaPaginaTela = screen.getByRole('heading', {
       name: /Página do game/i
     })
@@ -31,8 +33,8 @@ describe('Teste o componente <App.js />', () => {
     expect(imageGravatarId).toBeInTheDocument();
     const scoreId = screen.getByTestId('header-score')
     expect(scoreId).toBeInTheDocument();
-    const gameTexto = screen.getByText('Página do Game')
-    const { pathname } = history.location;
+    // const gameTexto = screen.getByText('Página do Game')
+    // const { pathname } = history.location;
     expect(pathname).toBe('/game');
     expect(gameTexto).toBeInTheDocument();
 
