@@ -33,8 +33,6 @@ describe('Teste o componente <App.js />', () => {
     expect(imageGravatarId).toBeInTheDocument();
     const scoreId = screen.getByTestId('header-score')
     expect(scoreId).toBeInTheDocument();
-    // const gameTexto = screen.getByText('Página do Game')
-    // const { pathname } = history.location;
     expect(pathname).toBe('/game');
     expect(gameTexto).toBeInTheDocument();
 
