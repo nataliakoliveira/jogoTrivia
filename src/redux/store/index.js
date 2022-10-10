@@ -1,7 +1,7 @@
 import { legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import user from '../reducers/user';
+import rootReducer from '../reducers';
 
-const store = createStore(user, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;

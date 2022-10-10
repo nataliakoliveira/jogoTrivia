@@ -42,7 +42,6 @@ class Login extends Component {
     const data = await fetch(url);
     const response = await data.json();
     const { token } = response;
-    console.log(token);
     localStorage.setItem('token', token);
     dispatch(typeLogin({ email, name }));
     history.push('/game');
