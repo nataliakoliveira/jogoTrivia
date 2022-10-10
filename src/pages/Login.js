@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { typeLogin } from '../redux/action/index';
+import { typeLogin, apiThunk } from '../redux/action/index';
 
 class Login extends Component {
   state = {
@@ -38,11 +38,7 @@ class Login extends Component {
     e.preventDefault();
     const { history, dispatch } = this.props;
     const { email, name } = this.state;
-    const url = 'https://opentdb.com/api_token.php?command=request';
-    const data = await fetch(url);
-    const response = await data.json();
-    const { token } = response;
-    localStorage.setItem('token', token);
+    dispatch(apiThunk());
     dispatch(typeLogin({ email, name }));
     history.push('/game');
   };
