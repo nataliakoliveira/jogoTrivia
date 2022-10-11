@@ -28,7 +28,10 @@ class Game extends React.Component {
     const response = await data.json();
     console.log(response, this.props);
     const errorCode = 3;
-    if (response.response_code === errorCode) history.push('/');
+    if (response.response_code === errorCode) {
+      history.push('/');
+      return;
+    }
     let randomResponse;
     randomResponse = [
       response.results[0].correct_answer, ...response.results[0].incorrect_answers];
