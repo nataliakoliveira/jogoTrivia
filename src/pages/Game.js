@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 
@@ -9,11 +9,41 @@ class Game extends React.Component {
     questions: [],
     loading: true,
     response: [],
+    clicou: false,
+    index: 0,
+    tempo: 30,
   };
 
   async componentDidMount() {
     await this.responseApi();
+    this.tempoJogo();
   }
+
+  tempoJogo = () => {
+    const segundos = 1000;
+    const idInterval = setInterval(() => {
+      this.setState(
+        (prevState) => ({
+          tempo: prevState.tempo - 1,
+        }),
+        () => {
+          const { tempo } = this.state;
+          if (tempo === 0) {
+            clearInterval(idInterval);
+            this.setState({
+              clicou:true,
+            });
+          }
+        },
+      );
+    }, segundos);
+  };
+
+  onChange = () => {
+    this.setState({
+      clicou: true,
+    });
+  };
 
   shuffle = (array = []) => {
     const numberRandom = 0.5;
@@ -22,11 +52,11 @@ class Game extends React.Component {
 
   responseApi = async () => {
     const { history } = this.props;
+    const { index } = this.state;
     const tokenLocalStorage = localStorage.getItem('token');
     const url = `https://opentdb.com/api.php?amount=5&token=${tokenLocalStorage}`;
     const data = await fetch(url);
     const response = await data.json();
-    console.log(response, this.props);
     const errorCode = 3;
     if (response.response_code === errorCode) {
       history.push('/');
@@ -34,7 +64,9 @@ class Game extends React.Component {
     }
     let randomResponse;
     randomResponse = [
-      response.results[0].correct_answer, ...response.results[0].incorrect_answers];
+      response.results[index].correct_answer,
+      ...response.results[index].incorrect_answers,
+    ];
     randomResponse = this.shuffle(randomResponse);
     this.setState({
       response: randomResponse,
@@ -44,47 +76,57 @@ class Game extends React.Component {
   };
 
   render() {
-    const { response, loading, questions } = this.state;
+    const { response, loading, questions, clicou, index, tempo, disabled } = this.state;
     return (
       <div>
         <Header />
+        <h1>{tempo}</h1>
         <h1>Página do Game</h1>
         {loading && <Loading />}
-        {
-          response.length > 0 && (
-            <div>
-              <h1>
-                Perguntas aqui
-              </h1>
-              <p data-testid="question-category">{questions[0].category}</p>
-              <p data-testid="question-text">{questions[0].question}</p>
-              <div data-testid="answer-options">
-                {response.map((elem, i) => {
-                  if (elem === questions[0].correct_answer) {
-                    return (
-                      <button
-                        key={ i }
-                        type="button"
-                        data-testid="correct-answer"
-                      >
-                        {elem}
-                      </button>
-                    );
-                  }
+        {response.length > 0 && (
+          <div>
+            <h1>Perguntas aqui</h1>
+            <p data-testid="question-category">{questions[index].category}</p>
+            <p data-testid="question-text">{questions[index].question}</p>
+            <div data-testid="answer-options">
+              {response.map((elem, i) => {
+                if (elem === questions[index].correct_answer) {
                   return (
                     <button
+                      className={ clicou && 'green-border' }
                       key={ i }
                       type="button"
-                      data-testid={ `wrong-answer-${0}` }
+                      data-testid="correct-answer"
+                      onClick={ this.onChange }
+                      disabled={ clicou }
                     >
                       {elem}
                     </button>
                   );
-                })}
-              </div>
+                }
+                return (
+                  <button
+                    className={ clicou && 'red-border' }
+                    key={ i }
+                    type="button"
+                    data-testid={ `wrong-answer-${index}` }
+                    onClick={ this.onChange }
+                    disabled={ clicou }
+                  >
+                    {elem}
+                  </button>
+                );
+              })}
+              <button
+                data-testid="btn-next"
+                type="button"
+                disabled={ !clicou }
+              >
+                Next
+              </button>
             </div>
-          )
-        }
+          </div>
+        )}
       </div>
     );
   }
