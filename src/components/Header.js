@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 class Header extends React.Component {
   render() {
     const { name, score, email } = this.props;
-    console.log(email);
     const token = md5(email).toString();
     return (
       <header>
@@ -32,9 +31,9 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  score: state.score,
-  name: state.name,
-  email: state.email,
+  score: state.user.score,
+  name: state.user.name,
+  email: state.user.email,
 });
 
 export default connect(mapStateToProps)(Header);

@@ -6,38 +6,35 @@ import userEvent from '@testing-library/user-event';
 
 
 describe('Teste o componente <App.js />', () => {
-  test('Verificação dos da pagina Login e pagina Gamer', async () => {
-    const { history } = renderWithRouterAndRedux(<App />);
+  test('Testando caminho login a headers e  o HeadersGames.', async () => {
+    
+    const { history } = renderWithRouterAndRedux(<App />, { initialEntries: ['/game'] });
     const inputName = screen.getByTestId('input-player-name');
     userEvent.type(inputName, 'Rejane');
     expect(inputName.value).toBe('Rejane');
+
     const inputEmail = screen.getByTestId('input-gravatar-email');
     userEvent.type(inputEmail, "rejane@rejane.com");
     expect(inputEmail.value).toBe('rejane@rejane.com');
+
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
+
     const gameTexto = await screen.findByText('Página do Game')
     const { pathname } = history.location;
     expect(pathname).toBe('/game');
     expect(gameTexto).toBeInTheDocument();
-  });
-})
 
-describe('Teste o componente <App.js />', () => {
-  test('Verificação dos da pagina Settings', () => {
-    renderWithRouterAndRedux(<App />);
-    const inputName = screen.getByTestId('input-player-name');
-    userEvent.type(inputName, 'Rejane');
-    expect(inputName.value).toBe('Rejane');
-
-    const inputEmail = screen.getByTestId('input-gravatar-email');
-    userEvent.type(inputEmail, "rejane@rejane.com");
-    expect(inputEmail.value).toBe('rejane@rejane.com');
-
-    const buttonPlay = screen.getByTestId('btn-play');
-    userEvent.click(buttonPlay)
-    const buttonSettings = screen.getByTestId('btn-settings');
-    userEvent.click(buttonSettings);
+    const nomeDaPaginaTela = screen.getByRole('heading', {
+      name: /Página do game/i
+    })
+    expect(nomeDaPaginaTela).toBeInTheDocument();
+    const imageGravatarId = screen.getByTestId('header-player-name')
+    expect(imageGravatarId).toBeInTheDocument();
+    const scoreId = screen.getByTestId('header-score')
+    expect(scoreId).toBeInTheDocument();
+    expect(pathname).toBe('/game');
+    expect(gameTexto).toBeInTheDocument();
 
   });
 })

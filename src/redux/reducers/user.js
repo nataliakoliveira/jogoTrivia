@@ -1,4 +1,4 @@
-import { TYPE_SCORE, TYPE_LOGIN } from '../action';
+import { TYPE_SCORE, TYPE_LOGIN, TYPE_API_THUNK } from '../action';
 
 const INITIAL_STATE = {
   email: '',
@@ -8,11 +8,6 @@ const INITIAL_STATE = {
 
 const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  /*   case TYPE_API:
-    return {
-      ...state,
-      email: action.payload,
-    }; */
   case TYPE_LOGIN:
     return {
       ...state,
@@ -23,6 +18,11 @@ const user = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: action.score,
+    };
+  case TYPE_API_THUNK:
+    return {
+      ...state,
+      payload: action.payload,
     };
   default:
     return state;
