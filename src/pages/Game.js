@@ -31,7 +31,7 @@ class Game extends React.Component {
           if (tempo === 0) {
             clearInterval(idInterval);
             this.setState({
-              clicou:true,
+              clicou: true,
             });
           }
         },
@@ -76,7 +76,7 @@ class Game extends React.Component {
   };
 
   render() {
-    const { response, loading, questions, clicou, index, tempo, disabled } = this.state;
+    const { response, loading, questions, clicou, index, tempo } = this.state;
     return (
       <div>
         <Header />
