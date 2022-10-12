@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   score: 0,
 };
 
-const user = (state = INITIAL_STATE, action) => {
+const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case TYPE_LOGIN:
     return {
@@ -17,7 +17,7 @@ const user = (state = INITIAL_STATE, action) => {
   case TYPE_SCORE:
     return {
       ...state,
-      score: action.score,
+      score: action.score + state.score,
     };
   case TYPE_API_THUNK:
     return {
@@ -29,4 +29,4 @@ const user = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default user;
+export default player;
