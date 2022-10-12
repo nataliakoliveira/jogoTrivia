@@ -62,7 +62,7 @@ class Game extends React.Component {
     }
   };
 
-  onChange = ({ target }) => {
+  handleAnswersClick = ({ target }) => {
     this.setState({ clicou: true }, () => {
       if (target.id === 'correct-answer') {
         this.calculatePoints();
@@ -123,7 +123,7 @@ class Game extends React.Component {
                       type="button"
                       id="correct-answer"
                       data-testid="correct-answer"
-                      onClick={ this.onChange }
+                      onClick={ this.handleAnswersClick }
                       disabled={ clicou }
                     >
                       {elem}
@@ -136,7 +136,7 @@ class Game extends React.Component {
                     key={ i }
                     type="button"
                     data-testid={ `wrong-answer-${index}` }
-                    onClick={ this.onChange }
+                    onClick={ this.handleAnswersClick }
                     disabled={ clicou }
                   >
                     {elem}
@@ -162,6 +162,7 @@ Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(Game);
