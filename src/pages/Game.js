@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
+import { typeScore } from '../redux/action';
 
 class Game extends React.Component {
   state = {
@@ -39,9 +40,33 @@ class Game extends React.Component {
     }, segundos);
   };
 
-  onChange = () => {
-    this.setState({
-      clicou: true,
+  dispatchScore = (score) => {
+    const { dispatch } = this.props;
+    dispatch(typeScore(score));
+  };
+
+  calculatePoints = () => {
+    const { questions, index, tempo } = this.state;
+    const difficultyPoints = { easy: 1, medium: 2, hard: 3 };
+    const basePoints = 10;
+    const { difficulty } = questions[index];
+    if (difficulty === 'hard') {
+      const score = basePoints + (difficultyPoints.hard * tempo);
+      this.dispatchScore(score);
+    } else if (difficulty === 'medium') {
+      const score = basePoints + (difficultyPoints.medium * tempo);
+      this.dispatchScore(score);
+    } else {
+      const score = basePoints + (difficultyPoints.easy * tempo);
+      this.dispatchScore(score);
+    }
+  };
+
+  onChange = ({ target }) => {
+    this.setState({ clicou: true }, () => {
+      if (target.id === 'correct-answer') {
+        this.calculatePoints();
+      }
     });
   };
 
@@ -96,6 +121,7 @@ class Game extends React.Component {
                       className={ clicou && 'green-border' }
                       key={ i }
                       type="button"
+                      id="correct-answer"
                       data-testid="correct-answer"
                       onClick={ this.onChange }
                       disabled={ clicou }

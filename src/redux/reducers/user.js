@@ -17,7 +17,7 @@ const user = (state = INITIAL_STATE, action) => {
   case TYPE_SCORE:
     return {
       ...state,
-      score: action.score,
+      score: action.score + state.score,
     };
   case TYPE_API_THUNK:
     return {
