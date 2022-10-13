@@ -69,6 +69,15 @@ describe('Teste o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   })
+  
+  test(' Verificação tela de FeedBack rota Ranking', () => {
+    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE
+      , '/feedback');
+      const btnID = screen.getByTestId('btn-ranking');
+      userEvent.click(btnID);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/ranking');
+  })
 })
 
 
