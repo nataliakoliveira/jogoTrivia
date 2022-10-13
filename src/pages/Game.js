@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
-import { typeScore } from '../redux/action';
+import { typeScore, typeAssertions } from '../redux/action';
 
 class Game extends React.Component {
   state = {
@@ -63,9 +63,11 @@ class Game extends React.Component {
   };
 
   handleAnswersClick = ({ target }) => {
+    const { dispatch } = this.props;
     this.setState({ clicou: true }, () => {
       if (target.id === 'correct-answer') {
         this.calculatePoints();
+        dispatch(typeAssertions());
       }
     });
   };
