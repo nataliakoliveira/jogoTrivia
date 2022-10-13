@@ -35,10 +35,8 @@ describe('Teste o componente <App.js />', () => {
       const perguntasId = screen.getByTestId('question-category');
       expect(perguntasId).toBeInTheDocument();
 
-      const h1Timer = screen.getByRole('heading', {
-        name: /0/i
-      })
-      expect(h1Timer).toBeInTheDocument();
+      const idtime = screen.getByTestId("timertest")
+      expect(idtime).toBeInTheDocument();
 
       const timerTela = screen.getByTestId('timertest');
       expect(timerTela).toBeInTheDocument();
@@ -48,7 +46,15 @@ describe('Teste o componente <App.js />', () => {
       expect(questionId).toBeInTheDocument();
       const buttonAcert = screen.getByTestId('correct-answer')
       expect(buttonAcert).toBeInTheDocument()
-    }, { timeout: 5000 })
+    }, { timeout: 30000 })
 
   })
+
+
+
+
+
+
+
+
 })
