@@ -16,6 +16,7 @@ describe('Teste o componente <App.js />', () => {
     expect(inputEmail.value).toBe('rejane@rejane.com');
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
+
     const gameTexto = await screen.findByText('Página do Game')
     const { pathname } = history.location;
     expect(pathname).toBe('/game');
@@ -29,18 +30,17 @@ describe('Teste o componente <App.js />', () => {
     expect(imageGravatarId).toBeInTheDocument();
     const scoreId = screen.getByTestId('header-score')
     expect(scoreId).toBeInTheDocument();
-    expect(pathname).toBe('/game');
     expect(gameTexto).toBeInTheDocument();
     await waitFor(() => {
       const perguntasId = screen.getByTestId('question-category');
       expect(perguntasId).toBeInTheDocument();
 
-      const h1Timer =screen.getByRole('heading', {
+      const h1Timer = screen.getByRole('heading', {
         name: /0/i
       })
       expect(h1Timer).toBeInTheDocument();
-      
-      const timerTela =screen.getByTestId('timertest');
+
+      const timerTela = screen.getByTestId('timertest');
       expect(timerTela).toBeInTheDocument();
       const categoryId = screen.getByTestId('question-text');
       expect(categoryId).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe('Teste o componente <App.js />', () => {
       expect(questionId).toBeInTheDocument();
       const buttonAcert = screen.getByTestId('correct-answer')
       expect(buttonAcert).toBeInTheDocument()
-    }, { timeout: 10000 })
+    }, { timeout: 5000 })
 
   })
 })
