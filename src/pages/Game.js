@@ -85,6 +85,7 @@ class Game extends React.Component {
     const errorCode = 3;
     if (response.response_code === errorCode) {
       history.push('/');
+      this.tempoJogo();
       return;
     }
     let randomResponse;
@@ -98,6 +99,24 @@ class Game extends React.Component {
       questions: response.results,
       loading: false,
     });
+  };
+
+  novaAns = () => {
+    const { index } = this.state;
+    const { history } = this.props;
+    this.setState({ clicou: false });
+    this.tempoJogo();
+    this.addAns();
+    console.log(tempoJogo());
+    const ultimaAns = 4;
+    if (index <= ultimaAns) history.push('/feedback');
+  };
+
+  addAns = () => {
+    this.setState(
+      (state) => ({ index: state.index + 1 }),
+      () => this.responseApi(),
+    );
   };
 
   render() {
@@ -143,13 +162,14 @@ class Game extends React.Component {
                   </button>
                 );
               })}
-              <button
-                data-testid="btn-next"
-                type="button"
-                disabled={ !clicou }
-              >
-                Next
-              </button>
+              { this.addAns && (
+                <button
+                  data-testid="btn-next"
+                  type="button"
+                  onClick={ this.novaAns }
+                >
+                  Next
+                </button>) }
             </div>
           </div>
         )}
