@@ -20,11 +20,15 @@ class Feedback extends Component {
   };
 
   render() {
-    // const { assertions } = this.props;
-    // const numeroMagic = 3;
+    const { score, assertions } = this.props;
     return (
       <>
         <Header />
+        <div className="resultados">
+          RESULTADOS
+          <p data-testid="feedback-total-score">{ score }</p>
+          <p data-testid="feedback-total-question">{ assertions }</p>
+        </div>
         <div data-testid="feedback-text">
           <p>{this.mensagemDoFdb()}</p>
         </div>
@@ -50,12 +54,14 @@ class Feedback extends Component {
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
+    push: PropTypes.func,
   }).isRequired,
+  score: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps)(Feedback);
