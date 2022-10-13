@@ -1,9 +1,10 @@
-import { TYPE_SCORE, TYPE_LOGIN, TYPE_API_THUNK } from '../action';
+import { TYPE_SCORE, TYPE_LOGIN, TYPE_API_THUNK, TYPE_ASSERTIONS } from '../action';
 
 const INITIAL_STATE = {
   email: '',
   name: '',
   score: 0,
+  assertions: 0,
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       payload: action.payload,
+    };
+  case TYPE_ASSERTIONS:
+    return {
+      ...state,
+      assertions: action.assertions + 1,
     };
   default:
     return state;
