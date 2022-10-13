@@ -4,10 +4,19 @@ import App from '../App';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+const INITIAL_STATE = {
+  player: {
+    email: 'weydson@weyd.com',
+    name: 'Cris',
+    score: 150,
+    assertions: 2,
+  }
+};
 
 describe('Teste o componente <App.js />', () => {
   test('Testando a pagina de Games.', async () => {
-    const { history } = renderWithRouterAndRedux(<App />);
+    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE
+    , '/game');
     const inputName = screen.getByTestId('input-player-name');
     userEvent.type(inputName, 'Rejane');
     expect(inputName.value).toBe('Rejane');
