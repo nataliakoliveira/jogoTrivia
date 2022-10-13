@@ -159,14 +159,17 @@ class Game extends React.Component {
                   </button>
                 );
               })}
-              <button
-                data-testid="btn-next"
-                type="button"
-                onClick={ this.nextPergunta }
-                disabled={ !clicou }
-              >
-                Next
-              </button>
+              { clicou
+                && (
+                  <button
+                    data-testid="btn-next"
+                    type="button"
+                    onClick={ this.nextPergunta }
+                  >
+                    Next
+
+                  </button>
+                )}
             </div>
           </div>
         )}
