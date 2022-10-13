@@ -17,11 +17,7 @@ class Feedback extends Component {
   mensagemDoFdb = () => {
     const magicNumber = 3;
     const { assertions } = this.props;
-    if (assertions < magicNumber) {
-      return 'Could be better...';
-    } if (assertions >= magicNumber) {
-      return 'Well Done!';
-    }
+    return (assertions >= magicNumber) ? 'Well Done!' : 'Could be better...';
   };
 
   render() {

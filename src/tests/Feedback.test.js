@@ -20,6 +20,14 @@ const INITIAL_STATE2 = {
     assertions: 4,
   }
 };
+const INITIAL_STATE3 = {
+  player: {
+    email: 'weydson@weyd.com',
+    name: 'Cris',
+    score: 150,
+    assertions: 3,
+  }
+};
 
 describe('Teste o componente <App.js />', () => {
 
@@ -40,6 +48,12 @@ describe('Teste o componente <App.js />', () => {
 
   test(' Verificação mensagem para pontuação maior que 3 ', () => {
     renderWithRouterAndRedux(<App />, INITIAL_STATE2, '/feedback');
+    const mensagAssert = screen.getByText(/Well Done!/i)
+    expect(mensagAssert).toBeInTheDocument();
+  })
+
+  test(' Verificação mensagem para pontuação é igual 3 ', () => {
+    renderWithRouterAndRedux(<App />, INITIAL_STATE3, '/feedback');
     const mensagAssert = screen.getByText(/Well Done!/i)
     expect(mensagAssert).toBeInTheDocument();
   })
@@ -68,6 +82,15 @@ describe('Teste o componente <App.js />', () => {
     userEvent.click(buttonInicial);
     const { pathname } = history.location;
     expect(pathname).toBe('/');
+  })
+  
+  test(' Verificação tela de FeedBack rota Ranking', () => {
+    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE
+      , '/feedback');
+      const btnID = screen.getByTestId('btn-ranking');
+      userEvent.click(btnID);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/ranking');
   })
 })
 
