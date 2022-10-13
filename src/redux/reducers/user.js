@@ -28,7 +28,7 @@ const player = (state = INITIAL_STATE, action) => {
   case TYPE_ASSERTIONS:
     return {
       ...state,
-      assertions: action.assertions + 1,
+      assertions: state.assertions + 1,
     };
   default:
     return state;
