@@ -49,12 +49,4 @@ describe('Teste o componente <App.js />', () => {
     }, { timeout: 30000 })
 
   })
-
-
-
-
-
-
-
-
 })
