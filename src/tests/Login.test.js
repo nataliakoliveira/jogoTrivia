@@ -1,7 +1,7 @@
 import React from 'react';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux'
 import App from '../App';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 
@@ -16,10 +16,12 @@ describe('Teste o componente <App.js />', () => {
     expect(inputEmail.value).toBe('rejane@rejane.com');
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
-    const gameTexto = await screen.findByText('Página do Game')
+    await waitFor(() => {
+    const gameTexto = screen.getByText('Página do Game')
     const { pathname } = history.location;
     expect(pathname).toBe('/game');
     expect(gameTexto).toBeInTheDocument();
+  }, { timeout: 5000 })
   });
 })
 

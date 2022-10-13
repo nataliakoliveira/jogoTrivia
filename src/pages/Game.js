@@ -124,7 +124,7 @@ class Game extends React.Component {
     return (
       <div>
         <Header />
-        <h1>{tempo}</h1>
+        <h1 data-testid="timertest">{tempo}</h1>
         <h1>Página do Game</h1>
         {loading && <Loading />}
         {response.length > 0 && (
