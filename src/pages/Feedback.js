@@ -9,6 +9,11 @@ class Feedback extends Component {
     history.push('/');
   };
 
+  handleClickRanking = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   mensagemDoFdb = () => {
     const magicNumber = 3;
     const { assertions } = this.props;
@@ -41,6 +46,14 @@ class Feedback extends Component {
           onClick={ this.handleClickHome }
         >
           Tela inicial
+        </button>
+
+        <button
+          data-testid="btn-ranking"
+          type="button"
+          onClick={ this.handleClickRanking }
+        >
+          Ranking
         </button>
       </>
     );
