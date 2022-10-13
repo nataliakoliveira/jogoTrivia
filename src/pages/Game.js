@@ -101,22 +101,19 @@ class Game extends React.Component {
     });
   };
 
-  novaAns = () => {
+  nextPergunta = () => {
     const { index } = this.state;
     const { history } = this.props;
-    this.setState({ clicou: false });
-    this.tempoJogo();
-    this.addAns();
-    console.log(tempoJogo());
-    const ultimaAns = 4;
-    if (index <= ultimaAns) history.push('/feedback');
-  };
-
-  addAns = () => {
+    this.setState({
+      clicou: false,
+      tempo: 30,
+    });
     this.setState(
       (state) => ({ index: state.index + 1 }),
       () => this.responseApi(),
     );
+    const ultimaAns = 4;
+    if (index >= ultimaAns) history.push('/feedback');
   };
 
   render() {
@@ -162,14 +159,14 @@ class Game extends React.Component {
                   </button>
                 );
               })}
-              { this.addAns && (
-                <button
-                  data-testid="btn-next"
-                  type="button"
-                  onClick={ this.novaAns }
-                >
-                  Next
-                </button>) }
+              <button
+                data-testid="btn-next"
+                type="button"
+                onClick={ this.nextPergunta }
+                disabled={ !clicou }
+              >
+                Next
+              </button>
             </div>
           </div>
         )}
