@@ -1,6 +1,12 @@
 export const TYPE_LOGIN = 'TYPE_LOGIN';
 export const TYPE_SCORE = 'TYPE_SCORE';
 export const TYPE_API_THUNK = 'TYPE_API_THUNK';
+export const ASSERTIONS = 'ASSERTIONS';
+
+export const typeAssertions = (assertions) => ({
+  type: ASSERTIONS,
+  assertions,
+});
 
 export const typeLogin = (userData) => ({
   type: TYPE_LOGIN,
