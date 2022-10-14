@@ -4,42 +4,40 @@ import App from '../App';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+const INITIAL_STATE = {
+  player: {
+    email: 'weydson@gmail.com',
+    name: 'Cristiano',
+    score: 150,
+    assertions: 2,
+  }
+};
 
 describe('Teste o componente <App.js />', () => {
-  test('Verificação dos da pagina Login e pagina Gamer', async () => {
-    const { history } = renderWithRouterAndRedux(<App />);
+  test('Testando a pagina de Games.', () => {
+    renderWithRouterAndRedux(<App />, INITIAL_STATE, "/");
     const inputName = screen.getByTestId('input-player-name');
-    userEvent.type(inputName, 'Rejane');
-    expect(inputName.value).toBe('Rejane');
+    userEvent.type(inputName, 'Cristiano');
+    expect(inputName.value).toBe('Cristiano');
     const inputEmail = screen.getByTestId('input-gravatar-email');
-    userEvent.type(inputEmail, "rejane@rejane.com");
-    expect(inputEmail.value).toBe('rejane@rejane.com');
+    userEvent.type(inputEmail, "weydson@gmail.com");
+    expect(inputEmail.value).toBe('weydson@gmail.com');
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
-    await waitFor(() => {
-    const gameTexto = screen.getByText('Página do Game')
-    const { pathname } = history.location;
-    expect(pathname).toBe('/game');
-    expect(gameTexto).toBeInTheDocument();
-  }, { timeout: 5000 })
-  });
-})
+  })
 
-describe('Teste o componente <App.js />', () => {
   test('Verificação dos da pagina Settings', () => {
-    renderWithRouterAndRedux(<App />);
+    renderWithRouterAndRedux(<App />, INITIAL_STATE, "/");
     const inputName = screen.getByTestId('input-player-name');
-    userEvent.type(inputName, 'Rejane');
-    expect(inputName.value).toBe('Rejane');
-
+    userEvent.type(inputName, 'Cristiano');
+    expect(inputName.value).toBe('Cristiano');
     const inputEmail = screen.getByTestId('input-gravatar-email');
-    userEvent.type(inputEmail, "rejane@rejane.com");
-    expect(inputEmail.value).toBe('rejane@rejane.com');
+    userEvent.type(inputEmail, "weydson@gmail.com");
+    expect(inputEmail.value).toBe('weydson@gmail.com')
 
     const buttonPlay = screen.getByTestId('btn-play');
     userEvent.click(buttonPlay)
     const buttonSettings = screen.getByTestId('btn-settings');
     userEvent.click(buttonSettings);
-
   });
 })

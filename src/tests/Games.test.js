@@ -6,8 +6,8 @@ import userEvent from '@testing-library/user-event';
 
 const INITIAL_STATE = {
   player: {
-    email: 'weydson@weyd.com',
-    name: 'Cris',
+    email: 'weydson@gmail.com',
+    name: 'Cristiano',
     score: 150,
     assertions: 2,
   }
@@ -15,47 +15,37 @@ const INITIAL_STATE = {
 
 describe('Teste o componente <App.js />', () => {
   test('Testando a pagina de Games.', async () => {
-    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE
-    , '/game');
-    const inputName = screen.getByTestId('input-player-name');
-    userEvent.type(inputName, 'Rejane');
-    expect(inputName.value).toBe('Rejane');
-    const inputEmail = screen.getByTestId('input-gravatar-email');
-    userEvent.type(inputEmail, "rejane@rejane.com");
-    expect(inputEmail.value).toBe('rejane@rejane.com');
-    const buttonPlay = screen.getByTestId('btn-play');
-    userEvent.click(buttonPlay)
-
-    const gameTexto = await screen.findByText('Página do Game')
-    const { pathname } = history.location;
-    expect(pathname).toBe('/game');
-    expect(gameTexto).toBeInTheDocument();
-
-    const nomeDaPaginaTela = screen.getByRole('heading', {
-      name: /Página do game/i
-    })
-    expect(nomeDaPaginaTela).toBeInTheDocument();
-    const imageGravatarId = screen.getByTestId('header-player-name')
-    expect(imageGravatarId).toBeInTheDocument();
-    const scoreId = screen.getByTestId('header-score')
-    expect(scoreId).toBeInTheDocument();
-    expect(gameTexto).toBeInTheDocument();
+    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE, "/game");
     await waitFor(() => {
-      const perguntasId = screen.getByTestId('question-category');
-      expect(perguntasId).toBeInTheDocument();
+      const gameTexto = screen.getByText('Página do Game')
+      expect(gameTexto).toHaveTextContent(/Página do Game/i);
+      const { pathname } = history.location;
+      expect(pathname).toBe('/game');
+    }, { timeout: 1000 })
+  });
 
-      const idtime = screen.getByTestId("timertest")
-      expect(idtime).toBeInTheDocument();
+  test('Testando a pagina de Games.', async () => {
+    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
 
-      const timerTela = screen.getByTestId('timertest');
-      expect(timerTela).toBeInTheDocument();
-      const categoryId = screen.getByTestId('question-text');
-      expect(categoryId).toBeInTheDocument();
-      const questionId = screen.getByTestId('answer-options');
-      expect(questionId).toBeInTheDocument();
-      const buttonAcert = screen.getByTestId('correct-answer')
-      expect(buttonAcert).toBeInTheDocument()
-    }, { timeout: 30000 })
+    await waitFor(() => {
+      const nomeDaPaginaTela = screen.getByRole('heading', {
+        name: /Página do game/i
+      })
+      expect(nomeDaPaginaTela).toHaveTextContent(/Página do game/i);
+      const imageGravatarId = screen.getByTestId('header-player-name')
+      expect(imageGravatarId).toBeInTheDocument();
+      const scoreId = screen.getByTestId('header-score')
+      expect(scoreId).toBeInTheDocument();
+    }, { timeout: 1000 })
+  });
 
-  })
+  test('Testando a pagina de Games tempo.', async () => {
+    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
+    const idtime = screen.getByTestId("timertest")
+    expect(idtime).toBeInTheDocument();
+    const timerTela = screen.getByTestId('timertest');
+    expect(timerTela).toBeInTheDocument();
+  });
+
+
 })
