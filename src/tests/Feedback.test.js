@@ -1,7 +1,7 @@
 import React from 'react';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux'
 import App from '../App';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const INITIAL_STATE = {

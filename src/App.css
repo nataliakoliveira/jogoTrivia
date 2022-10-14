@@ -11,35 +11,35 @@
 
 body {
   background-image: url("https://assets2.razerzone.com/images/pnx.assets/618c0b65424070a1017a7168ea1b6337/razer-wallpapers-page-hero-mobile.jpg");
-  background-size:cover;
   background-repeat: no-repeat;
+  background-size:cover;
 
 }
 
 .App-header {
-  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+  align-items: center;
   background-image: url("https://assets2.razerzone.com/images/pnx.assets/618c0b65424070a1017a7168ea1b6337/razer-wallpapers-page-hero-mobile.jpg");
   background-size:cover;
-  align-items: center;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 60%;
   font-size: medium;
+  width: 60%;
   
 }
 
 input {
-  padding: 0.8rem;
-  border-radius: 20px;
   display: flex;
-  font-style:italic;
-  flex-direction:row;
-  color: hwb(279 10% 35%);
-  font-weight: bold;
-  font-size: 80%;
   border:  2px solid #17C3B2;
+  border-radius: 20px;
+  color: hwb(279 10% 35%);
+  flex-direction:row;
+  font-size: 80%;
+  font-weight: bold;
+  font-style:italic;
+  padding: 0.8rem;
 }
 
 p{
@@ -64,33 +64,33 @@ p{
 }
 /* From uiverse.io by @nikk7007 */
 button {
-  font-weight: bold;
-  padding: 0.8em 1.8em;
+  background-color: transparent;
   border: 2px solid #17C3B2;
   border-radius: 15px;
+  color: #17C3B2;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0.8em 1.8em;
   position: relative;
   overflow: hidden;
-  background-color: transparent;
   text-align: center;
   text-transform: uppercase;
-  font-size: 16px;
   transition: .3s;
   z-index: 1;
-  font-family: inherit;
-  color: #17C3B2;
  }
 
  button::before {
-  content: '';
-  width: 0;
-  height: 300%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
   background: #17C3B2;
-  transition: .5s ease;
+  content: '';
   display: block;
+  height: 300%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: .5s ease;
+  top: 50%;
+  width: 0;
   z-index: -1;
  }
  
@@ -102,7 +102,6 @@ button {
   color: #111;
  }
  
-
 h1 {
   color: #17C3B2;
   font-size: 3rem;
