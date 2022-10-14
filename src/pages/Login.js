@@ -56,43 +56,40 @@ class Login extends Component {
   render() {
     const { name, email, isBtnDisabled } = this.state;
     return (
-      <>
-        <h1>estou aqui Login</h1>
-        <form>
-          <input
-            data-testid="input-player-name"
-            type="text"
-            value={ name }
-            name="name"
-            placeholder="Digite seu Nome"
-            onChange={ this.handleInput }
-          />
-          <input
-            data-testid="input-gravatar-email"
-            placeholder="Digite seu Email"
-            type="text"
-            value={ email }
-            name="email"
-            onChange={ this.handleInput }
-            required
-          />
-          <button
-            data-testid="btn-play"
-            type="submit"
-            disabled={ isBtnDisabled }
-            onClick={ this.handleClick }
-          >
-            Play
-          </button>
-          <button
-            data-testid="btn-settings"
-            type="button"
-            onClick={ this.handleClickSettings }
-          >
-            Settings
-          </button>
-        </form>
-      </>
+      <form>
+        <input
+          data-testid="input-player-name"
+          type="text"
+          value={ name }
+          name="name"
+          placeholder="Digite seu Nome"
+          onChange={ this.handleInput }
+        />
+        <input
+          data-testid="input-gravatar-email"
+          placeholder="Digite seu Email"
+          type="text"
+          value={ email }
+          name="email"
+          onChange={ this.handleInput }
+          required
+        />
+        <button
+          data-testid="btn-play"
+          type="submit"
+          disabled={ isBtnDisabled }
+          onClick={ this.handleClick }
+        >
+          Play
+        </button>
+        <button
+          data-testid="btn-settings"
+          type="button"
+          onClick={ this.handleClickSettings }
+        >
+          Settings
+        </button>
+      </form>
     );
   }
 }
@@ -103,7 +100,5 @@ Login.propTypes = {
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
-
-/* mapStateToProps = (state) => ({ ...state }); */
 
 export default connect()(Login);

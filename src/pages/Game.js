@@ -123,14 +123,25 @@ class Game extends React.Component {
     return (
       <div>
         <Header />
-        <h1 data-testid="timertest">{tempo}</h1>
-        <h1>Página do Game</h1>
+        <h1 data-testid="timertest">
+          Tempo:
+          {tempo}
+        </h1>
         {loading && <Loading />}
         {response.length > 0 && (
           <div>
-            <h1>Perguntas aqui</h1>
-            <p data-testid="question-category">{questions[index].category}</p>
-            <p data-testid="question-text">{questions[index].question}</p>
+            <p className="pcategory" data-testid="question-category">
+              Category:
+              {' '}
+              {questions[index].category}
+            </p>
+            <p
+              className="pQuestions"
+              data-testid="question-text"
+            >
+              {questions[index].question}
+
+            </p>
             <div data-testid="answer-options">
               {response.map((elem, i) => {
                 if (elem === questions[index].correct_answer) {
@@ -161,7 +172,7 @@ class Game extends React.Component {
                   </button>
                 );
               })}
-              { clicou
+              {clicou
                 && (
                   <button
                     data-testid="btn-next"

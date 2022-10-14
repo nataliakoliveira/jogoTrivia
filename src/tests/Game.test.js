@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 };
 
 describe('Teste o componente <App.js />', () => {
-  test('Testando a pagina de Games.', async () => {
+  test('Testando a pagina de Game.', async () => {
     const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE, "/game");
     await waitFor(() => {
       const gameTexto = screen.getByText('Página do Game')
@@ -24,8 +24,8 @@ describe('Teste o componente <App.js />', () => {
     }, { timeout: 1000 })
   });
 
-  test('Testando a pagina de Games.', async () => {
-    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
+  test('Testando a pagina de Game.', async () => {
+    renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
 
     await waitFor(() => {
       const nomeDaPaginaTela = screen.getByRole('heading', {
@@ -39,12 +39,17 @@ describe('Teste o componente <App.js />', () => {
     }, { timeout: 1000 })
   });
 
-  test('Testando a pagina de Games tempo.', async () => {
-    const { history } = renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
+  test('Testando a pagina de Game tempo.', () => {
+    renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
     const idtime = screen.getByTestId("timertest")
     expect(idtime).toBeInTheDocument();
     const timerTela = screen.getByTestId('timertest');
     expect(timerTela).toBeInTheDocument();
+  });
+
+  test('Testando a pagina de Game tempo.', () => {
+    renderWithRouterAndRedux(<App />, INITIAL_STATE, '/game');
+    
   });
 
 

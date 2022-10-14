@@ -1,15 +1,122 @@
-body {
+:root {
+  --color:#17C3B2;
+}
+
+* {
   box-sizing: border-box;
+  font-family: Oxanium, cursive;
   margin: 0;
   padding: 0;
 }
+
+body {
+  background-image: url("https://assets2.razerzone.com/images/pnx.assets/618c0b65424070a1017a7168ea1b6337/razer-wallpapers-page-hero-mobile.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+
+}
+
+.App-header {
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+  background-image: url("https://assets2.razerzone.com/images/pnx.assets/618c0b65424070a1017a7168ea1b6337/razer-wallpapers-page-hero-mobile.jpg");
+  background-size:cover;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 60%;
+  font-size: medium;
+  
+}
+
+input {
+  padding: 0.8rem;
+  border-radius: 20px;
+  display: flex;
+  font-style:italic;
+  flex-direction:row;
+  color: hwb(279 10% 35%);
+  font-weight: bold;
+  font-size: 80%;
+  border:  2px solid #17C3B2;
+}
+
+p{
+ color: var(--color);
+}
+.pName{
+  color:rgba(88, 62, 203, 0.923);
+  font-size: 4rem;
+  text-shadow: 1px 1px var(--color);
+  
+}
+.pcategory{
+ color:rgba(88, 62, 203, 0.923);
+ font-size: 4rem;
+ text-shadow: 1px 1px var(--color);
+}
+.pQuestions{
+ color: rgb(237, 134, 213);
+ font-style: italic;
+ font-family:Verdana, Geneva, Tahoma, sans-serif;
+ text-shadow: 1px 1px rgb(231, 18, 227);
+}
+/* From uiverse.io by @nikk7007 */
+button {
+  font-weight: bold;
+  padding: 0.8em 1.8em;
+  border: 2px solid #17C3B2;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: .3s;
+  z-index: 1;
+  font-family: inherit;
+  color: #17C3B2;
+ }
+
+ button::before {
+  content: '';
+  width: 0;
+  height: 300%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #17C3B2;
+  transition: .5s ease;
+  display: block;
+  z-index: -1;
+ }
+ 
+ button:hover::before {
+  width: 105%;
+ }
+ 
+ button:hover {
+  color: #111;
+ }
+ 
+
+h1 {
+  color: #17C3B2;
+  font-size: 3rem;
+  text-shadow: 2px 2px #080b50;
+}
+
 
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 15vmin;
+  height: 30rem;
+  padding: 2rem ;
   pointer-events: none;
 }
 

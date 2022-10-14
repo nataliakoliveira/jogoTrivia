@@ -23,17 +23,6 @@ export const typeApiThunk = (payload) => ({
   payload,
 });
 
-/* export const apiThunk = () => {
-  const url = 'https://opentdb.com/api_token.php?command=request';
-  return async (dispatch) => {
-    const data = await fetch(url);
-    const response = await data.json();
-    dispatch(typeApiThunk(response));
-    const { token } = response;
-    localStorage.setItem('token', token);
-  };
-}; */
-
 export const apiThunkGame = () => {
   const tokenLocalStorage = localStorage.getItem('token');
   const url = `https://opentdb.com/api.php?amount=5&token=${tokenLocalStorage}`;
